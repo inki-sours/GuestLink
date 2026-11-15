@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,12 +24,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+private const val MENU_TAB =  0
+private const val CART_TAB = 1
+private const val TABLE_TAB = 2
+
 @Composable
 fun MenuScreen(
     modifier: Modifier = Modifier
+
 ) {
     var selectedCategory by remember { mutableStateOf("Все") }
     val cartManager = remember { CardMenager() }
+    val selectedTab by remember { mutableStateOf(TABLE_TAB) }
 
 
     val categories = listOf(
@@ -39,6 +48,8 @@ fun MenuScreen(
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 16.dp)
     ) {
+
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -88,6 +99,13 @@ fun MenuScreen(
                 {cartManager.addDish(dish)})
             }
             }
+        }
+
+        val items = listOf("Стол", "Меню", "Заказы" )
+
+
+        NavigationBar(modifier = Modifier) {
+
         }
 
     }
