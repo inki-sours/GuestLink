@@ -7,3 +7,6 @@ import kotlinx.serialization.Serializable
 data object Menu
 @Serializable
 data object Card
+
+@Serializable
+data object Order

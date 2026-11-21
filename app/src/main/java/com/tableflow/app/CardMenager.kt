@@ -2,7 +2,7 @@ package com.tableflow.app
 
 import androidx.compose.runtime.mutableStateListOf
 
-class CardMenager {
+class CardManager {
     private val items = mutableStateListOf<CardItem>()
 
     val cardItems: List<CardItem>

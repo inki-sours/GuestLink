@@ -21,6 +21,7 @@ import com.tableflow.app.navigation.AppNavHost
 import com.tableflow.app.navigation.Card
 import com.tableflow.app.navigation.Menu
 import com.tableflow.app.ui.theme.TableFlowTheme
+import com.tableflow.app.navigation.Order
 
 class MainActivity : ComponentActivity() {
 
@@ -36,6 +37,7 @@ class MainActivity : ComponentActivity() {
                 val currentDestination = backStackEntry?.destination
                 val isMenuSelected = currentDestination?.hasRoute<Menu>() == true
                 val isCartSelected = currentDestination?.hasRoute<Card>() == true
+                val isOrderSelected = currentDestination?.hasRoute<Order>() == true
                 Scaffold(
                     bottomBar = {
                         NavigationBar {
@@ -66,6 +68,22 @@ class MainActivity : ComponentActivity() {
                                 icon = { Text("🛒") },
                                 label = { Text("Корзина") }
                             )
+
+
+                            NavigationBarItem(
+                                selected = isOrderSelected,
+                                onClick = {
+                                    if (!isOrderSelected) {
+                                        navController.navigate(Order) {
+                                            popUpTo<Menu>()
+                                            launchSingleTop = true
+                                        }
+                                    }
+                                },
+                                icon = { Text("📋") },
+                                label = { Text("Заказ") }
+                            )
+
                         }
                     }
                 ) { innerPadding ->
